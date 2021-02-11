@@ -8,11 +8,27 @@ import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 
 function App() {
+
+  function handleEditAvatarClick() {
+    document.querySelector('.popup-avatar').classList.add('popup_opened');
+    // document.addEventListener('keyup', this._handleEscClose);
+  }
+
+  function handleEditProfileClick() {
+    document.querySelector('.popup-edit').classList.add('popup_opened');
+    // document.addEventListener('keyup', this._handleEscClose);
+  }
+
+  function handleAddPlaceClick() {
+    document.querySelector('.popup-add').classList.add('popup_opened');
+    // document.addEventListener('keyup', this._handleEscClose);
+  }
+
   return (
     <>
       <div className="page">
         <Header />
-        <Main />
+        <Main onAddPlace={handleAddPlaceClick} onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} />
         <Footer />
         <PopupWithForm name="edit" title="Редактировать профиль" >
           <div class="popup__form">
