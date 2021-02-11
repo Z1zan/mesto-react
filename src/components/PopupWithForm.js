@@ -1,24 +1,17 @@
-function PopupWithForm() {
+function PopupWithForm(props) {
   return(
     <>
-      {/* <form className={`popup popup-${props.name} popup-form`} name="changeProfile">
+      <form className={`popup popup-${props.name} popup-form`} name={`${props.name}Popup`}>
         <div className="popup__container"> 
           <button className={`popup__close-btn popup-${props.name}__close-btn`} opacity type="reset"></button>
-          <h2 className="popup__title">Редактировать профиль</h2>
-          <div className="popup__form">
-            <input className="popup__field popup__field_name" id="input-name" type="text" name="name" value="" placeholder="Имя" required minlength="2" maxlength="40" />
-            <span className="popup__form-field-error" id="input-name-error">Вы пропустили это поле.</span>
-          </div>
-          <div className="popup__form">
-            <input className="popup__field popup__field_job" id="input-job" type="text" name="about" value="" placeholder="Занятие" required minlength="2" maxlength="200" />
-            <span className="popup__form-field-error" id="input-job-error">Вы пропустили это поле.</span>
-          </div>
+          <h2 class="popup__title">{props.title}</h2>
+          <>{props.children}</>
           <button className={`popup__submit-btn submit-${props.name}-btn`} type="submit">Сохранить</button>
         </div>
         <div className={`popup__overlay overlay-${props.name}`}></div>
-      </form> */}
-
-
+      </form>
+{
+/* 
       <form class="popup popup-edit popup-form" name="changeProfile">
         <div class="popup__container"> 
           <button class="popup__close-btn popup-edit__close-btn opacity" type="reset"></button>
@@ -74,7 +67,7 @@ function PopupWithForm() {
             <button class="popup__submit-btn submit-del-btn" type="submit">Да</button>
           </div>
           <div class="popup__overlay overlay-del"></div>
-        </form>
+        </form> */}
 
     </>
   )
