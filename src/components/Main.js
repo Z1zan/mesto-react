@@ -8,7 +8,7 @@ function Main(props) {
   const [userName, setUserName] = useState([]);
   const [userDescription, setUserDescription] = useState([]);
 
-  const [userInfo, setUserInfo] = useState([]);
+  
 
   useEffect(() => {
     api
