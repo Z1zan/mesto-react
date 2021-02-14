@@ -17,29 +17,33 @@ function App() {
 
 
   function handleCardClick(card) {
-    if (selectedCard !== true) {
-      setIsImagePopupOpen(!isImagePopupOpen);
-    }
+    // if (selectedCard !== true) {
+    //   setIsImagePopupOpen(!isImagePopupOpen);
+    // }
+    setIsImagePopupOpen(true);
     setSelectedCard(card);
   }
 
 
   function handleEditAvatarClick() {
-    if (isEditAvatarPopupOpen !== true){
-    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
-    }
+    // if (isEditAvatarPopupOpen !== true){
+    // setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+    // }
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    if (isEditProfilePopupOpen !== true){
-      setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-    }
+    // if (isEditProfilePopupOpen !== true){
+    //   setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    // }
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    if (isAddPlacePopupOpen !== true){
-      setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-    }
+    // if (isAddPlacePopupOpen !== true){
+    //   setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+    // }
+    setIsAddPlacePopupOpen(true);
   }
 
   function closeAllPopups() {
