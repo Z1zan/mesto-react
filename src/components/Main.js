@@ -1,14 +1,14 @@
 import avatar from '../images/Avatar.svg';
 import {useState, useEffect} from 'react';
 import api from '../utils/Api.js';
+import Card from './Card.js';
 
 function Main(props) {
 
-  const [userAvatar, setUserAvatar] = useState([]);
-  const [userName, setUserName] = useState([]);
-  const [userDescription, setUserDescription] = useState([]);
-
-  
+  const [userAvatar, setUserAvatar] = useState([avatar]);
+  const [userName, setUserName] = useState('Загрузка...');
+  const [userDescription, setUserDescription] = useState('Загрузка...');
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
@@ -18,10 +18,30 @@ function Main(props) {
         setUserName(data.name);
         setUserDescription(data.about);
       })
-
       .catch((err) => {
         console.log(err);
-      });
+      })
+  }, [])
+
+  useEffect(() => {
+    api
+      .getInitialCards()
+      .then(data => {
+        console.log(data)
+        const cards = data.map(item => {
+          return {
+            id: item._id,
+            name: item.name,
+            link: item.link,
+            likes: item.likes
+          }
+          // ,console.log(item.likes.length)
+        })
+        setCards(cards);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }, [])
 
 
@@ -30,6 +50,7 @@ function Main(props) {
 
 
   return(
+  <>
     <main className="main">
       <div className="profile">
         <img className="profile__avatar" src={userAvatar} alt="аватар" />
@@ -42,8 +63,10 @@ function Main(props) {
         <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace}></button>
       </div>
       <div className="elements">
+        {cards.map(item => <Card key={item.id} {...item}/>)}
       </div>
     </main>
+  </>
   )
 }
 
