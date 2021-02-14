@@ -17,32 +17,19 @@ function App() {
 
 
   function handleCardClick(card) {
-    // if (selectedCard !== true) {
-    //   setIsImagePopupOpen(!isImagePopupOpen);
-    // }
     setIsImagePopupOpen(true);
     setSelectedCard(card);
   }
 
-
   function handleEditAvatarClick() {
-    // if (isEditAvatarPopupOpen !== true){
-    // setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
-    // }
     setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    // if (isEditProfilePopupOpen !== true){
-    //   setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-    // }
     setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    // if (isAddPlacePopupOpen !== true){
-    //   setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-    // }
     setIsAddPlacePopupOpen(true);
   }
 
@@ -58,8 +45,6 @@ function App() {
   const editPopupOpen = `${isEditProfilePopupOpen ? 'popup_opened' : ''}`;
   const addPopupOpen = `${isAddPlacePopupOpen ? 'popup_opened' : ''}`;
   const imgPopupOpen = `${isImagePopupOpen ? 'popup_opened' : ''}`;
-
-
 
   return (
     <>
@@ -105,7 +90,6 @@ function App() {
         <PopupWithForm name="del" title="Вы уверены?" >
           <input id="" name="cardId" required type="text" hidden />
         </PopupWithForm>
-
 
         <ImagePopup card={selectedCard} isOpen={imgPopupOpen} onClose={closeAllPopups} />
       </div>

@@ -48,25 +48,23 @@ function Main(props) {
 
 
   return(
-  <>
     <main className="main">
       <div className="profile">
         <div className="profile__container">
           <img className="profile__avatar" src={userAvatar} alt="аватар" />
-          <div className="profile__avatar-overlay" onClick={props.onEditAvatar} ></div>
+          <div className="profile__avatar-overlay" onClick={props.onEditAvatar} />
         </div>
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
-          <button className="profile__edit-btn opacity" type="button" onClick={props.onEditProfile}></button>
+          <button className="profile__edit-btn opacity" type="button" onClick={props.onEditProfile} />
           <p className="profile__job">{userDescription}</p>
         </div>
-        <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace}></button>
+        <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace} />
       </div>
       <div className="elements">
         {cards.map(item => <Card key={item.id} {...item} onCardClick={props.onImgCard}/>)}
       </div>
     </main>
-  </>
   )
 }
 
