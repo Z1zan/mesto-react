@@ -27,7 +27,6 @@ function Main(props) {
     api
       .getInitialCards()
       .then(data => {
-        console.log(data)
         const cards = data.map(item => {
           return {
             id: item._id,
@@ -35,7 +34,6 @@ function Main(props) {
             link: item.link,
             likes: item.likes
           }
-          // ,console.log(item.likes.length)
         })
         setCards(cards);
       })
@@ -65,7 +63,7 @@ function Main(props) {
         <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace}></button>
       </div>
       <div className="elements">
-        {cards.map(item => <Card key={item.id} {...item}/>)}
+        {cards.map(item => <Card key={item.id} {...item} onCardClick={props.onImgCard}/>)}
       </div>
     </main>
   </>

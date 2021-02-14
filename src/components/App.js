@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 
 import Header from './Header.js';
 import Main from './Main.js';
@@ -11,6 +11,17 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+
+  const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
+
+
+  function handleCardClick(card) {
+    if (selectedCard !== true) {
+      setIsImagePopupOpen(!isImagePopupOpen);
+    }
+    setSelectedCard(card);
+  }
 
 
   function handleEditAvatarClick() {
@@ -32,19 +43,17 @@ function App() {
   }
 
   function closeAllPopups() {
-    if(isEditAvatarPopupOpen == true) {
-      setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
-    } else if (isEditProfilePopupOpen == true) {
-      setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-    } else if (isAddPlacePopupOpen == true) {
-      setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-    }
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsImagePopupOpen(false);
   }
 
 
   const avatarPopupOpen = `${isEditAvatarPopupOpen ? 'popup_opened' : ''}`;
   const editPopupOpen = `${isEditProfilePopupOpen ? 'popup_opened' : ''}`;
   const addPopupOpen = `${isAddPlacePopupOpen ? 'popup_opened' : ''}`;
+  const imgPopupOpen = `${isImagePopupOpen ? 'popup_opened' : ''}`;
 
 
 
@@ -56,6 +65,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick} 
         onEditProfile={handleEditProfileClick} 
         onAddPlace={handleAddPlaceClick}
+        onImgCard={handleCardClick}
         />
         <Footer />
 
@@ -93,7 +103,7 @@ function App() {
         </PopupWithForm>
 
 
-        <ImagePopup />
+        <ImagePopup card={selectedCard} isOpen={imgPopupOpen} onClose={closeAllPopups} />
       </div>
     </>
   );
