@@ -3,6 +3,7 @@
   background-image: url("../../../images/avatarHover.svg");
   border-radius: 60%;
   position: absolute;
+  top: 0;
   width: 120px;
   height: 120px;
   background-repeat: no-repeat;
