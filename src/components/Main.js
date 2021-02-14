@@ -53,8 +53,10 @@ function Main(props) {
   <>
     <main className="main">
       <div className="profile">
-        <img className="profile__avatar" src={userAvatar} alt="аватар" />
-        <div className="profile__avatar-overlay" onClick={props.onEditAvatar} ></div>
+        <div className="profile__container">
+          <img className="profile__avatar" src={userAvatar} alt="аватар" />
+          <div className="profile__avatar-overlay" onClick={props.onEditAvatar} ></div>
+        </div>
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
           <button className="profile__edit-btn opacity" type="button" onClick={props.onEditProfile}></button>
