@@ -1,27 +1,14 @@
-import avatar from '../images/Avatar.svg';
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useContext } from 'react';
 import api from '../utils/Api.js';
 import Card from './Card.js';
 
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+
 function Main(props) {
 
-  const [userAvatar, setUserAvatar] = useState([avatar]);
-  const [userName, setUserName] = useState('Загрузка...');
-  const [userDescription, setUserDescription] = useState('Загрузка...');
-  const [cards, setCards] = useState([]);
+  const userContext = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setUserAvatar(data.avatar);
-        setUserName(data.name);
-        setUserDescription(data.about);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [])
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
@@ -43,21 +30,17 @@ function Main(props) {
   }, [])
 
 
-
-
-
-
   return(
     <main className="main">
       <div className="profile">
         <div className="profile__container">
-          <img className="profile__avatar" src={userAvatar} alt="аватар" />
+          <img className="profile__avatar" src={userContext.avatar} alt="аватар" />
           <div className="profile__avatar-overlay" onClick={props.onEditAvatar} />
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{userContext.name}</h1>
           <button className="profile__edit-btn opacity" type="button" onClick={props.onEditProfile} />
-          <p className="profile__job">{userDescription}</p>
+          <p className="profile__job">{userContext.about}</p>
         </div>
         <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace} />
       </div>
