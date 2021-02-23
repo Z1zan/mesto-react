@@ -19,7 +19,8 @@ function Main(props) {
             id: item._id,
             name: item.name,
             link: item.link,
-            likes: item.likes
+            likes: item.likes,
+            ownerId: item.owner._id,
           }
         })
         setCards(cards);

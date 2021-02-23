@@ -53,7 +53,7 @@ function App() {
   const addPopupOpen = `${isAddPlacePopupOpen ? 'popup_opened' : ''}`;
   const imgPopupOpen = `${isImagePopupOpen ? 'popup_opened' : ''}`;
 
-  const [currentUser, setCurrentUser] = useState({name: "Загрузка...", about: "Загрузка...", avatar: avatar});
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     api
