@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-import avatar from '../images/Avatar.svg'
-
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -115,14 +113,13 @@ function App() {
   }, [])
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     
-    // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card.id, isLiked)
       .then((newCard) => {
-        console.log("cards", cards.id);
+        console.log("cards", cards);
+        console.log("card", card);
           // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
         const newCards = cards.map((c) => c.id === card.id ? newCard : c);
 
