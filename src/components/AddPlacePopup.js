@@ -5,8 +5,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function AddPlacePopup(props) {
 
-  const [name, setName] = useState([]);
-  const [link, setLink] = useState([]);
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
 
   function handleAddCardName(e) {
     setName(e.target.value)
@@ -27,7 +27,6 @@ function AddPlacePopup(props) {
     });
   } 
 
-  const currentUser = useContext(CurrentUserContext);
 
   return(
 

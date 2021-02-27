@@ -7,10 +7,6 @@ function Main(props) {
 
   const currentUser = useContext(CurrentUserContext);
 
-
-
-
-
   return(
     <main className="main">
       <div className="profile">
@@ -26,7 +22,7 @@ function Main(props) {
         <button className="profile__add-btn opacity" type="button" onClick={props.onAddPlace} />
       </div>
       <div className="elements">
-        {props.cards.map(item => <Card key={item.id} {...item} onCardClick={props.onImgCard} onCardLike={props.handleCardLike} onCardDelete={props.handleCardDelete} />)}
+        {props.cards.map(card => <Card card={card} key={card.id} id={card.id} {...card} onCardClick={props.onImgCard} onCardLike={props.handleCardLike} onCardDelete={props.handleCardDelete} />)}
       </div>
     </main>
   )

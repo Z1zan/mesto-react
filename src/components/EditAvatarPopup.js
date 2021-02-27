@@ -6,7 +6,7 @@ function EditAvatarPopup(props) {
 
   const avatarRef = useRef();
 
-  const [avatar, setAvatar] = useState([]);
+  const [avatar, setAvatar] = useState('');
 
 
   function handleSubmit(e) {

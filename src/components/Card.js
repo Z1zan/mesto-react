@@ -21,15 +21,15 @@ function Card(props) {
 
 
   function handleClick() {
-    props.onCardClick(props);
+    props.onCardClick(props.card);
   }
 
   function handleLikeClick() {
-    props.onCardLike(props)
+    props.onCardLike(props.card)
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props)
+    props.onCardDelete(props.card)
   }
 
 

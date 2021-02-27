@@ -58,7 +58,7 @@ function App() {
 
   useEffect(() => {
     api
-      .getUserInfo(currentUser)
+      .getUserInfo()
       .then((data) => {
         setCurrentUser(data);
       })
@@ -97,16 +97,20 @@ function App() {
   useEffect(() => {
     api
       .getInitialCards()
-      .then(data => {
-        const cards = data.map(item => {
-          return {
-            id: item._id,
-            name: item.name,
-            link: item.link,
-            likes: item.likes,
-            ownerId: item.owner._id,
-          }
-        })
+      // .then(data => {
+      //   const cards = data.map(item => {
+      //     return {
+      //       id: item._id,
+      //       name: item.name,
+      //       link: item.link,
+      //       likes: item.likes,
+      //       ownerId: item.owner._id,
+      //     }
+      //   })
+      //   setCards(cards);
+      // })
+      .then((cards) => {
+        console.log(cards);
         setCards(cards);
       })
       .catch(err => console.log(err));
@@ -116,16 +120,13 @@ function App() {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     
     api
-      .changeLikeCardStatus(card.id, isLiked)
+      .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-        console.log("cards", cards);
-        console.log("card", card);
           // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-        const newCards = cards.map((c) => c.id === card.id ? newCard : c);
+        const newCards = cards.map((c) => c._id === card._id ? newCard : c);
 
         // Обновляем стейт
         setCards(newCards);
-        console.log(newCards)
       })
       .catch(err => console.log(err));
   }
@@ -152,6 +153,7 @@ function App() {
       })
       .catch(err => console.log(err));
   }
+
 
 
 
