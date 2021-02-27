@@ -48,8 +48,8 @@ class Api {
   )
   }
 
-    setUserInfo(data) {
-    return fetch(`${this.baseUrl}/users/me `, {
+  setUserInfo(data) {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._token,
@@ -68,7 +68,7 @@ class Api {
   )
   }
 
-  setAvatar(link) {
+  setUserAvatar(link) {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -100,34 +100,63 @@ class Api {
     )
   }
 
-  likeCard(cardId) {
-    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-      method: "PUT",
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res) =>
-    res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка лайка карточки: ${res.status}`)
-    )
+  changeLikeCardStatus(cardId, isLiked) {
+    if(isLiked == false) {
+      return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+        method: "PUT",
+        headers: {
+          authorization: this._token,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) =>
+      res.ok
+        ? res.json()
+        : Promise.reject(`Ошибка лайка карточки: ${res.status}`)
+      )
+    } else {
+      return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+        method: "DELETE",
+        headers: {
+          authorization: this._token,
+        }
+      })
+      .then((res) =>
+      res.ok
+        ? res.json()
+        : Promise.reject(`Ошибка дизлайка карточки: ${res.status}`)
+      )
+    }
   }
 
-  unLikeCard(cardId) {
-    return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-      method: "DELETE",
-      headers: {
-        authorization: this._token,
-      }
-    })
-    .then((res) =>
-    res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка дизлайка карточки: ${res.status}`)
-    )
-  }
+  // likeCard(cardId) {
+  //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       authorization: this._token,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then((res) =>
+  //   res.ok
+  //     ? res.json()
+  //     : Promise.reject(`Ошибка лайка карточки: ${res.status}`)
+  //   )
+  // }
+
+  // unLikeCard(cardId) {
+  //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       authorization: this._token,
+  //     }
+  //   })
+  //   .then((res) =>
+  //   res.ok
+  //     ? res.json()
+  //     : Promise.reject(`Ошибка дизлайка карточки: ${res.status}`)
+  //   )
+  // }
 
 }
 

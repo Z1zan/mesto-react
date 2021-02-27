@@ -9,6 +9,8 @@ import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
+import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
 
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
@@ -54,17 +56,40 @@ function App() {
   const imgPopupOpen = `${isImagePopupOpen ? 'popup_opened' : ''}`;
 
   const [currentUser, setCurrentUser] = useState({});
+  console.log("user", currentUser.about);
 
   useEffect(() => {
     api
-      .getUserInfo()
+      .getUserInfo(currentUser)
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch((err) => {
-        console.log(err);
-      })
+      .catch((err) => console.log(err))
   }, [])
+
+  function handleUpdateUser(item) {
+    api
+      .setUserInfo(item)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .then(() => {
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
+
+  function handleUpdateAvatar(item) {
+    api
+      .setUserAvatar(item)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .then(() => {
+        closeAllPopups();
+      })
+      .catch(err => console.log(err));
+  }
 
   return (
     <>
@@ -79,23 +104,9 @@ function App() {
           />
           <Footer />
 
-          <PopupWithForm onClose={closeAllPopups} isOpen={avatarPopupOpen} name="avatar" title="Обновить аватар">
-            <div className="popup__form">
-              <input className="popup__field popup__field_link-avatar" id="input-linkAvatar" type="url" name="avatar" defaultValue="" placeholder="Ссылка на картинку" required />
-              <span className="popup__form-field-error" id="input-linkAvatar-error">Вы пропустили это поле.</span>
-            </div>
-          </PopupWithForm>
+          <EditAvatarPopup setAvatar={handleUpdateAvatar} isOpen={avatarPopupOpen} onClose={closeAllPopups} />
 
-          <PopupWithForm onClose={closeAllPopups} isOpen={editPopupOpen} name="edit" title="Редактировать профиль" >
-            <div className="popup__form">
-              <input className="popup__field popup__field_name" id="input-name" type="text" name="name" defaultValue="" placeholder="Имя" required minLength="2" maxLength="40" />
-              <span className="popup__form-field-error" id="input-name-error">Вы пропустили это поле.</span>
-            </div>
-            <div className="popup__form">
-              <input className="popup__field popup__field_job" id="input-job" type="text" name="about" defaultValue="" placeholder="Занятие" required minLength="2" maxLength="200" />
-              <span className="popup__form-field-error" id="input-job-error">Вы пропустили это поле.</span>
-            </div>
-          </PopupWithForm>
+          <EditProfilePopup onUpdateUser={handleUpdateUser} isOpen={editPopupOpen} onClose={closeAllPopups} />
 
           <PopupWithForm onClose={closeAllPopups} isOpen={addPopupOpen} name="add" title="Новое место" >
             <div className="popup__form">
