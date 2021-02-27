@@ -128,7 +128,6 @@ class Api {
       )
     }
   }
-
 }
 
 const api = new Api({
