@@ -97,20 +97,7 @@ function App() {
   useEffect(() => {
     api
       .getInitialCards()
-      // .then(data => {
-      //   const cards = data.map(item => {
-      //     return {
-      //       id: item._id,
-      //       name: item.name,
-      //       link: item.link,
-      //       likes: item.likes,
-      //       ownerId: item.owner._id,
-      //     }
-      //   })
-      //   setCards(cards);
-      // })
       .then((cards) => {
-        console.log(cards);
         setCards(cards);
       })
       .catch(err => console.log(err));
@@ -132,12 +119,14 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.removeCard(card.id).then(() => {
-      const newCards = cards.filter(c => c.id !== card.id);
-      // Обновляем стейт
-      setCards(newCards);
-    })
-    .catch(err => console.log(err));
+    api
+      .removeCard(card._id)
+      .then(() => {
+        const newCards = cards.filter(c => c._id !== card._id);
+        // Обновляем стейт
+        setCards(newCards);
+      })
+      .catch(err => console.log(err));
   }
 
 

@@ -129,35 +129,6 @@ class Api {
     }
   }
 
-  // likeCard(cardId) {
-  //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       authorization: this._token,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then((res) =>
-  //   res.ok
-  //     ? res.json()
-  //     : Promise.reject(`Ошибка лайка карточки: ${res.status}`)
-  //   )
-  // }
-
-  // unLikeCard(cardId) {
-  //   return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       authorization: this._token,
-  //     }
-  //   })
-  //   .then((res) =>
-  //   res.ok
-  //     ? res.json()
-  //     : Promise.reject(`Ошибка дизлайка карточки: ${res.status}`)
-  //   )
-  // }
-
 }
 
 const api = new Api({
